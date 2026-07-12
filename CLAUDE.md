@@ -38,7 +38,7 @@ workshop-site/
     └── ai-agent-building-101-advanced.pptx
 ```
 
-- `index.html` contains all HTML and CSS.
+- `index.html` contains all HTML, CSS, and a small progressive-enhancement script for scroll reveals.
 - There is no JavaScript framework, package manager, build command, or generated output.
 - The files in `decks/` are linked directly from the page.
 - Google Fonts are the only current remote design dependency.
@@ -65,8 +65,8 @@ Do not claim that a Google Drive resource is a direct PDF download unless its fi
 Preserve the current editorial workshop aesthetic:
 
 - Warm paper background, dark green ink, forest/moss accents, and restrained amber/blue accents.
-- Bricolage Grotesque for display type, Manrope for body copy, and DM Mono for small labels.
-- Rounded white cards, subtle borders, light shadows, and generous spacing.
+- Instrument Serif for expressive display type, Manrope for body copy, and DM Mono for technical labels.
+- A field-manual-meets-control-room aesthetic with warm paper, deep forest panels, acid green actions, orange event details, precise borders, and generous spacing.
 - Responsive layouts that collapse cleanly below `760px`.
 
 New sections should reuse the existing CSS variables, typography, card language, button styles, and spacing system. Avoid generic SaaS visuals, excessive gradients, animations that distract from workshop use, or unnecessary decorative elements.
