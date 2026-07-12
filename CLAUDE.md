@@ -65,11 +65,11 @@ Do not claim that a Google Drive resource is a direct PDF download unless its fi
 
 ## Design direction
 
-Preserve the current editorial workshop aesthetic:
+Preserve the live presentation's cinematic agent-operations aesthetic:
 
-- Warm paper background, dark green ink, forest/moss accents, and restrained amber/blue accents.
-- Instrument Serif for expressive display type, Manrope for body copy, and DM Mono for technical labels.
-- A field-manual-meets-control-room aesthetic with warm paper, deep forest panels, acid green actions, orange event details, precise borders, and generous spacing.
+- Near-black `#07110f` and `#030806` backgrounds, `#0c1916` panels, lime `#c8ff3d`, mint `#78f6c7`, orange `#ff7747`, blue `#5aa7ff`, and pale text `#e9eee7`.
+- Bricolage Grotesque and Syne for display type, Manrope for body copy, and DM Mono for technical labels.
+- Cinematic dark surfaces, lime-to-mint emphasized words, subtle 64px technical grids, grain, thin glowing borders, ghosted oversized type, and precise mono annotations.
 - Responsive layouts that collapse cleanly below `760px`.
 
 New sections should reuse the existing CSS variables, typography, card language, button styles, and spacing system. Avoid generic SaaS visuals, excessive gradients, animations that distract from workshop use, or unnecessary decorative elements.

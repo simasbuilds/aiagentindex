@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#10251c">
+  <meta name="theme-color" content="#07110f">
   <meta name="description" content="Follow the AI Agent Building 101 workshop, open the hands-on exercises, and download both presentation decks.">
   <meta property="og:title" content="AI Agent Building 101 — Workshop Field Guide">
   <meta property="og:description" content="Live presentation, hands-on exercises, and downloadable workshop resources for PMI Florida Suncoast.">
@@ -12,7 +12,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500..800&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --paper: #f3f0e6;
@@ -398,6 +398,139 @@
     .reveal { opacity: 1; transform: none; }
     .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
     .js .reveal.visible { opacity: 1; transform: none; }
+
+    /* Presentation brand system — mirrors the live HTML deck */
+    :root {
+      --paper: #e9eee7;
+      --paper-2: #0c1916;
+      --ink: #07110f;
+      --ink-soft: #93a39d;
+      --forest: #07110f;
+      --green: #78f6c7;
+      --acid: #c8ff3d;
+      --orange: #ff7747;
+      --blue: #5aa7ff;
+      --white: #e9eee7;
+      --line: rgba(233,238,231,.14);
+      --line-light: rgba(233,238,231,.14);
+      --shadow: 0 32px 90px rgba(0,0,0,.32);
+    }
+    body { color: var(--paper); background: #07110f; }
+    body::before { opacity: .045; mix-blend-mode: normal; }
+    .section-title,
+    h1,
+    .resource-card h3,
+    .event-lockup h2,
+    .event-date,
+    .venue-name,
+    .toolkit-stat strong,
+    .tool-card h3,
+    .deck-card h3,
+    .agenda h3,
+    .event-value,
+    .about-quote {
+      font-family: "Bricolage Grotesque", Syne, sans-serif;
+      font-stretch: 95%;
+      letter-spacing: -.038em;
+    }
+    .section-title { font-weight: 700; line-height: .9; }
+    .section-title em,
+    h1 em,
+    .event-lockup h2 em,
+    .about-quote em {
+      color: transparent;
+      background: linear-gradient(90deg, #d8ff6a, var(--acid) 52%, var(--green));
+      background-clip: text;
+      -webkit-background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(200,255,61,.12));
+    }
+    .topbar { background: rgba(3,8,6,.9); border-color: var(--line); }
+    .brand { font-family: "Bricolage Grotesque", sans-serif; }
+    .brand-mark { border-radius: 10px; box-shadow: 0 0 28px rgba(200,255,61,.18); }
+    .live-link { border-radius: 9px; }
+    .hero {
+      background:
+        radial-gradient(circle at 76% 34%, rgba(120,246,199,.12), transparent 24%),
+        radial-gradient(circle at 92% 74%, rgba(90,167,255,.07), transparent 22%),
+        linear-gradient(125deg,#07110f 0%,#050b09 62%,#07130f 100%);
+    }
+    .hero::before {
+      background-image: linear-gradient(rgba(200,255,61,.03) 1px, transparent 1px), linear-gradient(90deg,rgba(200,255,61,.03) 1px,transparent 1px);
+      background-size: 64px 64px;
+    }
+    .hero::after { color: transparent; -webkit-text-stroke: 1px rgba(233,238,231,.045); font-family: Syne, sans-serif; }
+    h1 { font-family: "Bricolage Grotesque", Syne, sans-serif; font-weight: 800; line-height: .79; }
+    .hero-kicker { color: var(--green); }
+    .hero-copy p { color: #c5cfca; }
+    .button { border-radius: 9px; }
+    .button-primary { box-shadow: 0 0 38px rgba(200,255,61,.14); }
+    .marquee { background: var(--acid); }
+
+    .event-feature {
+      color: var(--paper);
+      background: #050b09;
+      border-bottom: 1px solid var(--line);
+    }
+    .event-feature::before { border-color: var(--line); box-shadow: 0 0 0 55px rgba(120,246,199,.018), 0 0 0 110px rgba(120,246,199,.012); }
+    .event-panel { color: var(--paper); background: var(--panel, #0c1916); border-color: rgba(233,238,231,.18); box-shadow: 0 35px 110px rgba(0,0,0,.42); }
+    .event-main {
+      background:
+        radial-gradient(circle at 76% 80%, rgba(120,246,199,.11), transparent 30%),
+        linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.015)),
+        #0c1916;
+    }
+    .event-main::before { opacity: .13; background: linear-gradient(45deg,transparent 72%,rgba(200,255,61,.5) 72%) 0 0/110px 110px,radial-gradient(circle,rgba(120,246,199,.6) 4px,transparent 5px) 46px 28px/46px 46px; }
+    .event-lockup h2 { font-weight: 800; }
+    .event-lockup h2 em { margin-left: 0; }
+    .event-details { color: var(--paper); background: #07110f; border-left: 1px solid var(--line); }
+    .event-details .label { color: var(--acid); }
+    .event-time, .venue-address, .host-lockup small { color: var(--muted); }
+    .venue-block, .host-lockup { border-color: var(--line); }
+    .host-mark { color: var(--ink); background: var(--orange); }
+    .event-actions a { border-color: var(--line); }
+    .event-actions a:first-child { color: var(--ink); background: var(--acid); }
+
+    section.content { color: var(--paper); background: #07110f; }
+    .section-intro, .resource-card p, .agenda p { color: var(--muted); }
+    .resource-list, .resource-card, .agenda, .agenda li { border-color: var(--line); }
+    .resource-card:hover { color: var(--acid); }
+    .resource-icon { border-color: var(--line); }
+    .resource-card:hover .resource-icon { color: var(--ink); background: var(--acid); }
+
+    .toolkit-section {
+      color: var(--paper);
+      background:
+        radial-gradient(circle at 78% 14%, rgba(120,246,199,.07), transparent 24%),
+        linear-gradient(125deg,#07110f,#050b09 65%,#07130f);
+    }
+    .toolkit-section::before { color: transparent; -webkit-text-stroke: 1px rgba(233,238,231,.045); font-family: Syne, sans-serif; }
+    .toolkit-stat, .tool-results { color: var(--muted); border-color: var(--line); }
+    .toolkit-stat strong { color: var(--paper); }
+    .tool-controls { background: rgba(255,255,255,.035); border-color: var(--line); }
+    .tool-search input { color: var(--paper); background: #050a09; border-color: #29453d; }
+    .tool-search input::placeholder { color: var(--muted); }
+    .filter-button { color: var(--muted); border-color: var(--line); }
+    .filter-button:hover, .filter-button.active { color: var(--ink); background: var(--acid); border-color: var(--acid); }
+    .tool-card { color: var(--paper); background: linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.018)); border-color: rgba(233,238,231,.17); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+    .tool-card::after { border-color: var(--line); }
+    .tool-card:hover { color: var(--paper); background: linear-gradient(145deg,rgba(255,255,255,.095),rgba(255,255,255,.025)); border-color: var(--acid); box-shadow: 0 25px 70px rgba(0,0,0,.22); }
+    .tool-card:hover::after { color: var(--ink); background: var(--acid); }
+    .tool-type { color: var(--green); background: rgba(120,246,199,.08); }
+    .tool-card p, .tool-meta { color: var(--muted); }
+    .tool-meta::before { background: var(--acid); border-color: var(--acid); box-shadow: 0 0 12px rgba(200,255,61,.5); }
+
+    .decks-section { background: #030806 !important; }
+    .deck-card { background: linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018)); border-color: rgba(233,238,231,.17); box-shadow: inset 0 1px 0 rgba(255,255,255,.055); }
+    .deck-card h3 { font-weight: 700; }
+    .deck-card p { color: var(--muted); }
+    .download { box-shadow: 0 0 28px rgba(200,255,61,.12); }
+
+    #agenda { background: #0c1916; }
+    .event-strip { background: var(--orange); }
+    .event-strip, .event-item { color: var(--ink); border-color: rgba(7,17,15,.28); }
+    .about { background: #07110f; }
+    .about-copy p { color: #bbc8c2; }
+    footer { background: #030806; }
 
     @media (max-width: 900px) {
       .nav > a:not(.live-link) { display: none; }
