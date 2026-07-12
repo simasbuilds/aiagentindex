@@ -31,6 +31,7 @@ This is intentionally a small static site:
 ```text
 workshop-site/
 ├── index.html
+├── event.ics
 ├── README.md
 ├── CLAUDE.md
 └── decks/
@@ -41,6 +42,7 @@ workshop-site/
 - `index.html` contains all HTML, CSS, and a small progressive-enhancement script for scroll reveals.
 - There is no JavaScript framework, package manager, build command, or generated output.
 - The files in `decks/` are linked directly from the page.
+- `event.ics` is the attendee-downloadable calendar event and must stay synchronized with the visible date, time, venue, and presentation URL.
 - Google Fonts are the only current remote design dependency.
 
 Do not introduce a framework, build system, or package dependency unless the requested feature genuinely requires it. Prefer semantic HTML and small amounts of vanilla CSS/JavaScript.

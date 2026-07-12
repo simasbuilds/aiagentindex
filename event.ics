@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//AI Agent Building 101//Workshop//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:ai-agent-building-101-20260714@simasbuilds.com
+DTSTAMP:20260712T230000Z
+DTSTART;TZID=America/New_York:20260714T180000
+DTEND;TZID=America/New_York:20260714T200000
+SUMMARY:AI Agent Building 101: From Concept to Working Prototype
+DESCRIPTION:A practical AI agent workshop presented by Simas Bandzevicius and hosted by PMI Florida Suncoast.
+LOCATION:Jabil\, 10800 Roosevelt Blvd N\, St. Petersburg\, FL 33716
+URL:https://aiagentspresentation.vercel.app/presenter#1
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

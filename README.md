@@ -9,6 +9,7 @@ Suncoast, July 14, 2026).
 ```
 workshop-site/
 ├── index.html              # the page
+├── event.ics               # downloadable calendar event
 └── decks/
     ├── ai-agent-building-101-foundations.pptx
     └── ai-agent-building-101-advanced.pptx
@@ -40,5 +41,5 @@ followed by `git push -u origin main`.)
 
 ## Updating
 
-Editing `index.html` or swapping a file in `decks/` and pushing to the
+Editing `index.html`, updating `event.ics`, or swapping a file in `decks/` and pushing to the
 connected GitHub branch will trigger an automatic redeploy on Vercel.

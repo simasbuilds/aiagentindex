@@ -203,6 +203,93 @@
     .marquee span::after { content: "✦"; }
     @keyframes marquee { to { transform: translateX(-50%); } }
 
+    .event-feature {
+      position: relative;
+      padding-block: clamp(70px, 10vw, 130px);
+      overflow: hidden;
+      background: var(--paper);
+    }
+    .event-feature::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -180px;
+      top: -160px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      box-shadow: 0 0 0 55px rgba(16,37,28,.025), 0 0 0 110px rgba(16,37,28,.02);
+    }
+    .event-panel {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      min-height: 590px;
+      color: var(--white);
+      background: #453f94;
+      border: 1px solid rgba(16,37,28,.28);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .event-main {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(34px, 5vw, 68px);
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.12), transparent 45%),
+        radial-gradient(circle at 76% 80%, rgba(200,190,255,.25), transparent 30%),
+        #5149a3;
+    }
+    .event-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .2;
+      background:
+        linear-gradient(45deg, transparent 72%, rgba(255,255,255,.5) 72%) 0 0 / 110px 110px,
+        radial-gradient(circle, rgba(255,255,255,.55) 5px, transparent 6px) 46px 28px / 46px 46px;
+      mask-image: linear-gradient(120deg, #000, transparent 68%);
+    }
+    .event-overline { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: rgba(255,255,255,.66); }
+    .event-overline span:last-child { display: inline-flex; align-items: center; gap: 9px; }
+    .event-overline span:last-child::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 0 5px rgba(199,246,91,.13); }
+    .event-lockup h2 { margin: 0; max-width: 8ch; font: 400 clamp(58px, 7vw, 104px)/.8 "Instrument Serif", serif; letter-spacing: -.05em; }
+    .event-lockup h2 em { display: block; margin-left: .55em; color: #d5ceff; font-weight: 400; }
+    .event-subtitle { max-width: 30ch; margin: 28px 0 0; color: rgba(255,255,255,.72); font-size: clamp(16px,1.4vw,19px); }
+    .presenter-line { display: flex; align-items: center; gap: 14px; margin-top: 38px; }
+    .presenter-monogram { display: grid; width: 46px; height: 46px; place-items: center; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; font: 500 11px "DM Mono", monospace; }
+    .presenter-line strong, .presenter-line small { display: block; }
+    .presenter-line strong { font-size: 14px; }
+    .presenter-line small { margin-top: 2px; color: rgba(255,255,255,.56); font-size: 11px; }
+    .event-details {
+      display: flex;
+      flex-direction: column;
+      padding: clamp(34px, 5vw, 64px);
+      color: var(--ink);
+      background: var(--white);
+    }
+    .event-details .label { color: #5149a3; }
+    .event-date { margin: 16px 0 0; font: 400 clamp(42px, 4.5vw, 67px)/.92 "Instrument Serif", serif; letter-spacing: -.035em; }
+    .event-time { margin-top: 14px; color: var(--ink-soft); font-size: 17px; font-weight: 700; }
+    .venue-block { margin-top: auto; padding-top: 40px; border-top: 1px solid var(--line); }
+    .venue-name { margin: 12px 0 0; font: 400 35px/1 "Instrument Serif", serif; }
+    .venue-address { margin: 10px 0 0; color: var(--ink-soft); font-size: 14px; }
+    .host-lockup { display: flex; align-items: center; gap: 12px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .host-mark { display: grid; width: 42px; height: 42px; place-items: center; color: var(--white); background: var(--orange); font: 800 12px Manrope, sans-serif; }
+    .host-lockup strong, .host-lockup small { display: block; }
+    .host-lockup strong { font-size: 13px; }
+    .host-lockup small { color: var(--ink-soft); font-size: 11px; }
+    .event-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 30px; }
+    .event-actions a { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 9px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; font-size: 12px; font-weight: 800; transition: color .2s, background .2s, transform .2s; }
+    .event-actions a:first-child { color: var(--white); background: var(--ink); }
+    .event-actions a:hover { transform: translateY(-2px); color: var(--white); background: var(--green); }
+
     section.content { padding-block: clamp(90px, 12vw, 160px); }
     .resource-layout { display: grid; grid-template-columns: .65fr 1.35fr; gap: clamp(45px, 8vw, 130px); align-items: start; }
     .sticky-head { position: sticky; top: 120px; }
@@ -287,6 +374,9 @@
       .meta-item:nth-child(2) { border-right: 0; }
       .meta-item:nth-child(-n+2) { border-bottom: 1px solid var(--line-light); }
       .resource-layout, .agenda-grid { grid-template-columns: 1fr; }
+      .event-panel { grid-template-columns: 1fr; }
+      .event-main { min-height: 560px; }
+      .event-details { min-height: 480px; }
       .sticky-head { position: static; }
       .deck-card { min-height: 430px; }
       .about-grid { grid-template-columns: 1fr; }
@@ -302,6 +392,9 @@
       .meta-item { padding: 17px 12px; }
       .meta-item:first-child { padding-left: 12px; }
       .deck-grid { grid-template-columns: 1fr; }
+      .event-panel { border-radius: 20px; }
+      .event-main { min-height: 500px; }
+      .event-actions { grid-template-columns: 1fr; }
       .resource-card { grid-template-columns: 36px 1fr 42px; gap: 10px; }
       .resource-icon { width: 42px; height: 42px; }
       .agenda li { grid-template-columns: 70px 1fr; gap: 12px; }
@@ -329,6 +422,7 @@
         <span class="brand-text">AI Agent Building 101</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
+        <a href="#event">Event</a>
         <a href="#resources">Resources</a>
         <a href="#decks">Decks</a>
         <a href="#agenda">Run of show</a>
@@ -375,6 +469,44 @@
         <span>Concept · Context · LLMs · APIs · MCP · Connectors · Tools · Feedback loops · Working prototype</span>
       </div>
     </div>
+
+    <section class="event-feature" id="event">
+      <div class="shell">
+        <article class="event-panel reveal" aria-labelledby="event-title">
+          <div class="event-main">
+            <div class="event-overline label"><span>Official session details</span><span>In person</span></div>
+            <div class="event-lockup">
+              <h2 id="event-title">AI Agent <em>Building 101</em></h2>
+              <p class="event-subtitle">From concept to working prototype—a hands-on workshop for project managers and business analysts.</p>
+              <div class="presenter-line">
+                <span class="presenter-monogram" aria-hidden="true">SB</span>
+                <span><strong>Simas Bandzevicius</strong><small>CSPO® · CSM · AI Business Analyst</small></span>
+              </div>
+            </div>
+          </div>
+          <div class="event-details">
+            <div>
+              <div class="label">Save the date</div>
+              <p class="event-date">July 14,<br>2026</p>
+              <div class="event-time">6:00–8:00 PM EDT</div>
+            </div>
+            <div class="venue-block">
+              <div class="label">Venue</div>
+              <p class="venue-name">Jabil</p>
+              <p class="venue-address">10800 Roosevelt Blvd N<br>St. Petersburg, FL 33716</p>
+              <div class="host-lockup">
+                <span class="host-mark" aria-hidden="true">PMI</span>
+                <span><strong>Project Management Institute</strong><small>Florida Suncoast Chapter</small></span>
+              </div>
+              <div class="event-actions">
+                <a href="event.ics" download>Add to calendar ↓</a>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=Jabil+10800+Roosevelt+Blvd+N+St+Petersburg+FL+33716" target="_blank" rel="noopener noreferrer">Open map ↗</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <section class="content" id="resources">
       <div class="shell resource-layout">
