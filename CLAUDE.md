@@ -1,0 +1,119 @@
+# CLAUDE.md
+
+## Project purpose
+
+This repository contains the companion website for the **AI Agent Building 101: From Concept to Working Prototype** presentation and workshop. Attendees should be able to open one memorable domain during the presentation, follow along, find workshop exercises and supporting resources, and download the presentation materials afterward.
+
+The site is intended to be published from GitHub to Vercel and may later use a custom domain.
+
+## Audience and experience
+
+The primary audience is a mixed business and project-management group, not necessarily a technical audience. Keep language plain, concise, and action-oriented.
+
+The page should make these actions immediately understandable:
+
+1. Follow the live presentation.
+2. Open the workshop exercise materials.
+3. Download the slide decks and other resources.
+4. Return later to review the material or continue learning.
+
+Important links:
+
+- Live presenter: <https://aiagentspresentation.vercel.app/presenter#1>
+- Workshop exercise files/PDFs: <https://drive.google.com/drive/folders/1m_kXiXqz4AMeSwhoeEl1qaCERgEwvnkQ?usp=sharing>
+
+External resources should open in a new tab with `target="_blank"` and `rel="noopener noreferrer"`. Downloadable files stored in this repository should use clear file names and the HTML `download` attribute where appropriate.
+
+## Current implementation
+
+This is intentionally a small static site:
+
+```text
+workshop-site/
+├── index.html
+├── README.md
+├── CLAUDE.md
+└── decks/
+    ├── ai-agent-building-101-foundations.pptx
+    └── ai-agent-building-101-advanced.pptx
+```
+
+- `index.html` contains all HTML and CSS.
+- There is no JavaScript framework, package manager, build command, or generated output.
+- The files in `decks/` are linked directly from the page.
+- Google Fonts are the only current remote design dependency.
+
+Do not introduce a framework, build system, or package dependency unless the requested feature genuinely requires it. Prefer semantic HTML and small amounts of vanilla CSS/JavaScript.
+
+## Content priorities
+
+When extending the page, preserve a simple top-to-bottom attendee journey:
+
+1. Hero with event identity and a strong primary action.
+2. Live presentation/follow-along link.
+3. Workshop exercises and resource links.
+4. Downloadable slide decks.
+5. Event details.
+6. Presenter information and follow-up links.
+
+Use descriptive calls to action such as **Follow the presentation**, **Open workshop exercises**, and **Download the foundations deck**. Avoid vague labels such as “Click here.” Clearly distinguish links that open a web resource from files that download.
+
+Do not claim that a Google Drive resource is a direct PDF download unless its final URL points to an actual file. The current workshop link is a shared Drive folder, so label it as a folder or collection of workshop files.
+
+## Design direction
+
+Preserve the current editorial workshop aesthetic:
+
+- Warm paper background, dark green ink, forest/moss accents, and restrained amber/blue accents.
+- Bricolage Grotesque for display type, Manrope for body copy, and DM Mono for small labels.
+- Rounded white cards, subtle borders, light shadows, and generous spacing.
+- Responsive layouts that collapse cleanly below `760px`.
+
+New sections should reuse the existing CSS variables, typography, card language, button styles, and spacing system. Avoid generic SaaS visuals, excessive gradients, animations that distract from workshop use, or unnecessary decorative elements.
+
+## Accessibility and usability
+
+- Use semantic landmarks and heading levels in order.
+- Every interactive element must be reachable and visibly focused with a keyboard.
+- Do not rely on color alone to communicate meaning.
+- Maintain readable color contrast and a minimum comfortable tap target of about 44px.
+- Add meaningful accessible text to icon-only controls; decorative SVGs should be hidden from assistive technology.
+- Respect `prefers-reduced-motion` for any new motion.
+- Keep the essential attendee actions usable on mobile and on venue Wi-Fi.
+- Never put essential instructions only inside a downloadable deck.
+
+## Editing rules
+
+- Make focused changes and preserve working content unless the request calls for a rewrite.
+- Keep asset paths relative so GitHub and Vercel deployments behave the same way.
+- Use lowercase, hyphenated file names for new downloads.
+- Do not rename or replace the existing `.pptx` files without updating every matching link.
+- Do not embed secrets, private URLs, analytics keys, or credentials in this public static repository.
+- Check external copy, event details, dates, and presenter information before changing them.
+- If a custom domain is added, keep the Vercel URL functional as a fallback and document any DNS/configuration change in `README.md`.
+
+## Local verification
+
+Because the site has no build step, serve it locally from `workshop-site/`:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then review `http://localhost:8000/` at desktop and mobile widths. Before considering a change complete, verify:
+
+- The page loads without console errors or missing local files.
+- Both `.pptx` download links work.
+- The live presenter link opens at slide `#1`.
+- The Google Drive workshop folder opens and is shared with the intended audience.
+- Navigation anchors land on the correct sections.
+- Keyboard focus, hover states, and mobile layouts remain usable.
+- Page title and description still accurately describe the event.
+
+## Deployment
+
+The repository should deploy to Vercel as a static site using the **Other** framework preset, with no build command and `.` as the output directory when `workshop-site/` is the repository root.
+
+Push changes to the GitHub branch connected to Vercel. Vercel should redeploy automatically. After deployment, test the public URL rather than assuming local relative links behave identically.
+
+If the parent directory becomes the GitHub repository root instead, either configure Vercel's root directory as `workshop-site` or move the site files to the repository root. Do not leave Vercel pointed at a directory that does not contain `index.html`.
