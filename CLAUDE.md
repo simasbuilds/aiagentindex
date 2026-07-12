@@ -43,6 +43,7 @@ workshop-site/
 - There is no JavaScript framework, package manager, build command, or generated output.
 - The files in `decks/` are linked directly from the page.
 - `event.ics` is the attendee-downloadable calendar event and must stay synchronized with the visible date, time, venue, and presentation URL.
+- The builder toolkit in `index.html` is a curated set of third-party GitHub resources with client-side search and category filters.
 - Google Fonts are the only current remote design dependency.
 
 Do not introduce a framework, build system, or package dependency unless the requested feature genuinely requires it. Prefer semantic HTML and small amounts of vanilla CSS/JavaScript.
@@ -92,6 +93,8 @@ New sections should reuse the existing CSS variables, typography, card language,
 - Do not rename or replace the existing `.pptx` files without updating every matching link.
 - Do not embed secrets, private URLs, analytics keys, or credentials in this public static repository.
 - Check external copy, event details, dates, and presenter information before changing them.
+- Keep toolkit URLs direct (never Google redirect URLs), verify that repositories still resolve, label community projects honestly, and avoid implying endorsement or guaranteed security.
+- When adding or removing toolkit cards, update the visible resource total and the JavaScript count message together.
 - If a custom domain is added, keep the Vercel URL functional as a fallback and document any DNS/configuration change in `README.md`.
 
 ## Local verification
