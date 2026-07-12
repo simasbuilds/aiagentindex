@@ -9,6 +9,7 @@ Suncoast, July 14, 2026).
 ```
 workshop-site/
 ├── index.html              # the page
+├── resources.html          # PM and business analyst AI resource center
 ├── event.ics               # downloadable calendar event
 └── decks/
     ├── ai-agent-building-101-foundations.pptx
