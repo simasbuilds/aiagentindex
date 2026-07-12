@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#07110f" />
+<title>AI Agent Building 101 — Workshop Resources</title>
+<meta name="description" content="Resources for AI Agent Building 101: From Concept to Working Prototype — PMI Florida Suncoast, July 14, 2026." />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500..800&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap');
+
+  :root{
+    --ink:#07110f; --panel:#0c1916; --panel-2:#0f2019;
+    --paper:#e9eee7; --muted:#93a39d; --line:rgba(233,238,231,.14);
+    --lime:#c8ff3d; --mint:#78f6c7; --orange:#ff7747; --blue:#5aa7ff;
+    --pad: clamp(24px, 6vw, 96px);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--ink); color:var(--paper);
+    font-family:Manrope,sans-serif; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif; letter-spacing:-.03em; line-height:1.02; margin:0}
+  .mono{font:500 12px/1.4 'DM Mono',monospace; letter-spacing:.14em; text-transform:uppercase}
+  a{color:inherit}
+
+  /* atmosphere */
+  .grain{position:fixed; inset:0; opacity:.045; pointer-events:none; z-index:5;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+  }
+  .glow{position:absolute; border-radius:50%; filter:blur(2px); pointer-events:none; z-index:0}
+
+  header{position:relative; z-index:2; padding:22px var(--pad); display:flex; align-items:center; justify-content:space-between}
+  .brand{font-weight:700; font-size:16px; letter-spacing:-.02em}
+  .brand b{color:var(--lime)}
+  nav a{margin-left:28px; font:500 13px Manrope; color:var(--muted); text-decoration:none}
+  nav a:hover{color:var(--paper)}
+
+  /* hero */
+  .hero{position:relative; padding: 6vh var(--pad) 8vh; overflow:hidden; border-bottom:1px solid var(--line)}
+  .hero::before{content:"";position:absolute; width:60vw; height:60vw; right:-22vw; top:-30vw;
+    background:radial-gradient(circle, rgba(120,246,199,.16), transparent 68%); z-index:0}
+  .hero::after{content:"";position:absolute; width:40vw; height:40vw; left:-16vw; bottom:-24vw;
+    background:radial-gradient(circle, rgba(200,255,61,.10), transparent 70%); z-index:0}
+  .hero-inner{position:relative; z-index:2; max-width:980px}
+  .eyebrow{color:var(--lime); display:flex; align-items:center; gap:10px; margin-bottom:22px}
+  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--lime); box-shadow:0 0 12px var(--lime)}
+  h1{font-size:clamp(38px, 6.4vw, 76px); max-width: 16ch}
+  h1 em{font-style:normal; color:var(--mint)}
+  .lede{margin-top:22px; font-size:clamp(16px,1.6vw,20px); color:#c5cfca; max-width:56ch}
+
+  .meta-row{margin-top:44px; display:flex; flex-wrap:wrap; gap:14px}
+  .chip{border:1px solid var(--line); background:rgba(233,238,231,.03); border-radius:100px;
+    padding:10px 18px; font:500 13px Manrope; display:flex; align-items:center; gap:9px; color:var(--paper)}
+  .chip .k{color:var(--muted); font:500 11px 'DM Mono'; letter-spacing:.08em; text-transform:uppercase}
+  .chip.accent{border-color:rgba(200,255,61,.35); color:var(--lime)}
+
+  /* sections */
+  section{position:relative; z-index:1; padding: 8vh var(--pad); border-bottom:1px solid var(--line)}
+  .section-head{max-width:640px; margin-bottom:48px}
+  .section-head .mono{color:var(--mint)}
+  .section-head h2{font-size:clamp(28px,4vw,46px); margin-top:14px}
+  .section-head p{color:var(--muted); margin-top:14px; font-size:15px; max-width:52ch}
+
+  /* deck cards */
+  .decks{display:grid; grid-template-columns:repeat(2,1fr); gap:22px; max-width:1080px}
+  .deck-card{position:relative; border:1px solid var(--line); border-radius:20px; padding:32px;
+    background:linear-gradient(160deg, var(--panel-2), var(--panel)); overflow:hidden;
+    display:flex; flex-direction:column; transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s}
+  .deck-card:hover{transform:translateY(-6px); border-color:rgba(200,255,61,.3)}
+  .deck-card .tag{align-self:flex-start}
+  .deck-card h3{font-size:26px; margin-top:18px}
+  .deck-card p{color:var(--muted); font-size:14px; margin-top:12px; flex:1}
+  .deck-card .specs{display:flex; gap:16px; margin-top:20px; padding-top:20px; border-top:1px solid var(--line)}
+  .deck-card .specs div{font:500 11px 'DM Mono'; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+  .deck-card .specs div b{display:block; font-family:Manrope; font-size:15px; text-transform:none; letter-spacing:0; color:var(--paper); margin-top:4px}
+  .btn{margin-top:24px; display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding:14px 20px; border-radius:11px; background:var(--paper); color:var(--ink);
+    font-weight:700; font-size:14px; text-decoration:none; transition:background .2s}
+  .btn:hover{background:var(--lime)}
+  .btn svg{width:16px; height:16px}
+  .tag{font:600 11px 'DM Mono'; letter-spacing:.1em; text-transform:uppercase; padding:6px 12px; border-radius:100px}
+  .tag.a{background:rgba(120,246,199,.12); color:var(--mint)}
+  .tag.b{background:rgba(255,119,71,.14); color:var(--orange)}
+
+  /* event details */
+  .details-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line);
+    border:1px solid var(--line); border-radius:16px; overflow:hidden; max-width:1080px}
+  .detail{background:var(--ink); padding:26px 22px}
+  .detail .mono{color:var(--muted)}
+  .detail div.val{margin-top:10px; font-size:18px; font-weight:700; font-family:'Bricolage Grotesque'}
+
+  /* about / contact */
+  .about-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:56px; max-width:1080px; align-items:start}
+  .about-grid p{color:#c5cfca; font-size:15px; max-width:52ch}
+  .links{display:flex; flex-direction:column; gap:12px; margin-top:8px}
+  .link-card{display:flex; align-items:center; justify-content:space-between; border:1px solid var(--line);
+    border-radius:12px; padding:16px 20px; text-decoration:none; color:var(--paper); transition:border-color .2s, background .2s}
+  .link-card:hover{border-color:rgba(200,255,61,.35); background:rgba(200,255,61,.04)}
+  .link-card .name{font-weight:700; font-size:15px}
+  .link-card .desc{color:var(--muted); font-size:12.5px; margin-top:3px}
+  .link-card .arrow{color:var(--lime); font-size:18px}
+
+  footer{padding:30px var(--pad); display:flex; align-items:center; justify-content:space-between;
+    color:var(--muted); font-size:12.5px}
+
+  @media (max-width:760px){
+    .decks{grid-template-columns:1fr}
+    .details-grid{grid-template-columns:repeat(2,1fr)}
+    .about-grid{grid-template-columns:1fr}
+    nav{display:none}
+    footer{flex-direction:column; align-items:flex-start; gap:8px}
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header>
+  <div class="brand">AI Agent Building <b>101</b></div>
+  <nav>
+    <a href="#decks">Slides</a>
+    <a href="#details">Event</a>
+    <a href="#about">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow mono">Workshop resources</div>
+    <h1>From Concept to <em>Working Prototype</em></h1>
+    <p class="lede">Everything from the AI Agent Building 101 session in one place — both decks, ready to download, plus the details for anyone who couldn't make it or wants to revisit the material.</p>
+    <div class="meta-row">
+      <div class="chip accent"><span class="k">Host</span> PMI Florida Suncoast</div>
+      <div class="chip"><span class="k">Date</span> July 14, 2026</div>
+      <div class="chip"><span class="k">PDUs</span> 1.5 (Ways of Working 1.0 · Power Skills 0.5)</div>
+    </div>
+  </div>
+</section>
+
+<section id="decks">
+  <div class="section-head">
+    <div class="mono">Get the slides</div>
+    <h2>Two decks, two depths</h2>
+    <p>Same 35-topic arc — pick the version that matches how you want to use it.</p>
+  </div>
+  <div class="decks">
+    <div class="deck-card">
+      <span class="tag a">Foundations</span>
+      <h3>The 101 Deck</h3>
+      <p>The core talk: LLMs, APIs, MCP, connectors, agents, tokens, and context — explained in plain language for a business audience. Clean, presentation-ready.</p>
+      <div class="specs">
+        <div>Slides<b>35</b></div>
+        <div>Format<b>.pptx</b></div>
+        <div>Level<b>Foundational</b></div>
+      </div>
+      <a class="btn" href="decks/ai-agent-building-101-foundations.pptx" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+        Download .pptx
+      </a>
+    </div>
+    <div class="deck-card">
+      <span class="tag b">Advanced</span>
+      <h3>The Advanced Edition</h3>
+      <p>Same arc, greater depth: sharper analogies, a feedback-loop framework, timed section pacing, and full speaker notes for delivering the live 90-minute session.</p>
+      <div class="specs">
+        <div>Slides<b>35</b></div>
+        <div>Format<b>.pptx</b></div>
+        <div>Level<b>Advanced</b></div>
+      </div>
+      <a class="btn" href="decks/ai-agent-building-101-advanced.pptx" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+        Download .pptx
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="details">
+  <div class="section-head">
+    <div class="mono">Event details</div>
+    <h2>Where and when</h2>
+  </div>
+  <div class="details-grid">
+    <div class="detail"><div class="mono">Date</div><div class="val">July 14, 2026</div></div>
+    <div class="detail"><div class="mono">Time</div><div class="val">6:00 – 8:00 PM</div></div>
+    <div class="detail"><div class="mono">Location</div><div class="val">Jabil, St. Petersburg</div></div>
+    <div class="detail"><div class="mono">Host</div><div class="val">PMI Florida Suncoast</div></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-head">
+    <div class="mono">About &amp; follow-up</div>
+    <h2>Keep building</h2>
+  </div>
+  <div class="about-grid">
+    <p>This session was built and delivered by Simas Bandzevicius, CSPO®, CSM — AI Business Analyst at Dynasty Financial Partners, and founder of the two projects below. Both decks on this page are free to reuse, adapt, and share.</p>
+    <div class="links">
+      <a class="link-card" href="https://scalingthis.com" target="_blank" rel="noopener">
+        <div><div class="name">Scaling This</div><div class="desc">AI automation for project teams and small businesses</div></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="link-card" href="https://learnwithsql.com" target="_blank" rel="noopener">
+        <div><div class="name">LearnWithSQL.com</div><div class="desc">Learn SQL and data fundamentals</div></div>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>AI Agent Building 101 — Workshop Resources</div>
+  <div>PMI Florida Suncoast · July 14, 2026</div>
+</footer>
+
+</body>
+</html>
