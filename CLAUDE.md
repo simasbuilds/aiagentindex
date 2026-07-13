@@ -31,7 +31,9 @@ This is intentionally a small static site:
 ```text
 workshop-site/
 ├── index.html
-├── resources.html
+├── resources/
+│   └── index.html
+├── vercel.json
 ├── event.ics
 ├── README.md
 ├── CLAUDE.md
@@ -41,7 +43,8 @@ workshop-site/
 ```
 
 - `index.html` contains all HTML, CSS, and a small progressive-enhancement script for scroll reveals.
-- `resources.html` is the enterprise resource center for project managers and business analysts, including role-based workflows, prompt guidance, governance, and workshop downloads.
+- `resources/index.html` is the enterprise resource center for project managers and business analysts, including role-based workflows, prompt guidance, governance, and workshop downloads.
+- Public routes are `/` and `/resources/`. Keep the legacy redirects in `vercel.json` so old `.html` links continue to work.
 - There is no JavaScript framework, package manager, build command, or generated output.
 - The files in `decks/` are linked directly from the page.
 - `event.ics` is the attendee-downloadable calendar event and must stay synchronized with the visible date, time, venue, and presentation URL.
