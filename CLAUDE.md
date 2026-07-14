@@ -33,6 +33,11 @@ workshop-site/
 ├── index.html
 ├── resources/
 │   └── index.html
+├── workshop-exercises/
+│   ├── index.html
+│   ├── exercises.css
+│   └── demo-1/
+│       └── index.html
 ├── vercel.json
 ├── event.ics
 ├── README.md
@@ -41,6 +46,7 @@ workshop-site/
 
 - `index.html` contains all HTML, CSS, and a small progressive-enhancement script for scroll reveals.
 - `resources/index.html` is the enterprise resource center for project managers and business analysts, including role-based workflows, prompt guidance, governance, and workshop downloads.
+- `workshop-exercises/index.html` is the editable participant exercise workspace; `workshop-exercises/demo-1/index.html` holds the Demo #1 presentation content.
 - Public routes are `/` and `/resources/`. Keep the legacy redirects in `vercel.json` so old `.html` links continue to work.
 - There is no JavaScript framework, package manager, build command, or generated output.
 - `event.ics` is the attendee-downloadable calendar event and must stay synchronized with the visible date, time, venue, and presentation URL.

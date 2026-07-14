@@ -11,6 +11,11 @@ workshop-site/
 ├── index.html              # the page
 ├── resources/
 │   └── index.html          # PM and business analyst AI resource center
+├── workshop-exercises/
+│   ├── index.html          # editable workshop exercise workspace
+│   ├── exercises.css       # shared exercise-page design system
+│   └── demo-1/
+│       └── index.html      # Demo #1 presentation contents
 ├── vercel.json             # clean routes, legacy redirects, and security headers
 ├── event.ics               # downloadable calendar event
 ```
