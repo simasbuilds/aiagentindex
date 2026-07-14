@@ -65,7 +65,7 @@
               <div class="contract-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
               <div class="contract-body" id="agent-prompt">
                 <div class="contract-line"><b>ROLE</b>You are a senior Project Manager and Business Analyst specializing in meeting intelligence.</div>
-                <div class="contract-line"><b>TASK</b>Review all three Microsoft Teams transcript PDFs as one project record. Consolidate the conversations into an evidence-based delivery brief.</div>
+                <div class="contract-line"><b>TASK</b>Review all three Microsoft Teams transcript PDFs as one project record. Consolidate the conversations into an evidence-based delivery brief. Create the Claude.MD for all the instructions based on information below. Create a SKILL.MD for the skills below that will have tools to review.</div>
                 <div class="contract-line"><b>EXTRACT</b>Business problem, current-state workflow, users and stakeholders, confirmed requirements, constraints, decisions, risks, open questions, dependencies, and action items with owners.</div>
                 <div class="contract-line"><b>EVIDENCE RULE</b>For every material finding, cite the transcript name and timestamp. Never invent a requirement, owner, due date, approval threshold, or technical decision. Mark anything unsupported as “Not confirmed.”</div>
                 <div class="contract-line"><b>OUTPUT</b>Produce an executive summary, findings table, action register, requirements backlog, and a short list of the highest-value follow-up questions for the next workshop.</div>
@@ -87,10 +87,289 @@
             </ol></div>
           </article>
 
-          <article class="block">
-            <div class="block-num mono">05 · Expected output</div>
-            <h3>What good looks like</h3>
-            <div class="placeholder filled"><strong>A traceable project intelligence brief</strong>The result should surface the manual request workflow, approval delays, spreadsheet duplication, user roles, next-quarter target, monthly reporting priority, and assigned follow-ups — while clearly marking missing approval thresholds, exact dates, and technical choices as unconfirmed.</div>
+          <article class="block wide">
+            <div class="block-num mono">05 · Final output</div>
+            <h3>Final file contents</h3>
+            <p class="block-note">The actual <code>CLAUDE.md</code> and <code>SKILL.md</code> generated for this demo's fictional Internal Request/Approval Process Replacement project, plus the delivery brief they produced from the three transcripts — shown exactly as built, so the room can see the real result, not a mockup.</p>
+            <a class="download-agent" href="downloads/meeting-intelligence-agent.zip" download>
+              <span>Download the complete agent <small>.zip · CLAUDE.md + SKILL.md + assets/ (3 transcripts) + deliverables/</small></span>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+            </a>
+            <div class="file-grid">
+              <div class="contract">
+                <div class="contract-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="file-name mono">CLAUDE.md</span></div>
+                <div class="contract-body">
+                  <pre id="claude-md-file"># Project: Meeting Intelligence — Internal Request/Approval Process Replacement
+
+## What this project is
+
+A project record built from Microsoft Teams meeting transcripts (`assets/*.pdf`) covering the
+discovery/requirements phase of replacing a manual internal request-and-approval process with a
+simple internal application. The consolidated analysis lives in `deliverables/Project_Delivery_Brief.md`.
+
+## Role
+
+When working in this project, act as a senior Project Manager and Business Analyst specializing in
+meeting intelligence: turn raw transcripts into a rigorous, evidence-based delivery brief — not a
+paraphrase, and not a best-guess fill-in.
+
+## Source material
+
+- `assets/Realistic_Teams_Transcript_1.pdf` — "Project Kickoff"
+- `assets/Realistic_Teams_Transcript_2.pdf` — "Requirements Gathering"
+- `assets/Realistic_Teams_Transcript_3.pdf` — "Discovery Session"
+
+**Known data-quality issue:** all three transcripts contain identical dialogue, timestamps, and
+action items — they differ only in title and one-line project-context description. Treat this as
+one evidentiary source filed three times, not three independent meetings. Do not let this
+duplication be cited as if it were corroboration across separate conversations. Flag it to the
+user/stakeholder rather than silently normalizing it. If new, genuinely distinct transcripts are
+added later, re-check for this pattern before treating them as incremental progress.
+
+## Working rules (non-negotiable)
+
+1. **Cite every material finding** to `(&lt;transcript filename&gt; [&lt;timestamp&gt;])`. No citation, no claim.
+2. **Never invent** a requirement, owner, due date, approval threshold, or technical decision. If
+   the transcripts don't state it, label it **"Not confirmed"** — do not infer a plausible-sounding
+   value to fill a gap.
+3. **Separate three tiers explicitly** wherever findings are presented: Confirmed (explicit +
+   cited) / Reasonable inference (explicit basis, marked as inference) / Not confirmed (a gap, not
+   a fact).
+4. **Surface duplication and conflicts** across transcripts rather than silently reconciling them —
+   if two sources disagree, present both and say so.
+5. Action items must always carry Owner, Timing, and Status columns — use "Not confirmed" rather
+   than blank or guessed values when the transcript doesn't state them.
+
+## Standard deliverable structure
+
+Any consolidated brief produced from these (or future) transcripts should contain, in order:
+1. Executive summary
+2. Findings table(s) with a source-evidence column
+3. Action register (Owner / Timing / Status / Source)
+4. Prioritized requirements backlog with acceptance questions for the next workshop
+5. Highest-value follow-up questions for the next workshop
+
+## Tooling
+
+Use the `meeting-intelligence-review` skill (`.claude/skills/meeting-intelligence-review/SKILL.md`)
+for the extraction method and citation discipline. Its bundled script
+`scripts/extract_transcripts.py` pulls raw text (with timestamps) out of transcript PDFs via
+`pypdf` — run it before drawing any conclusion so the full transcript is in view, not a partial read.
+
+## Known open gaps (do not resolve without new source evidence)
+
+- Exact finance-approval dollar threshold
+- Specific legacy systems/spreadsheets in scope
+- Confirmed delivery date (only "before next quarter" is stated, no year/quarter given)
+- Full list of permission levels beyond "manager" vs. "regular employee"
+- Named departments/contacts for the planned follow-up interviews
+
+These should stay "Not confirmed" until a future transcript or document explicitly states them.
+</pre>
+                  <button class="copy-button" id="copy-claude-md" type="button">Copy CLAUDE.md</button>
+                </div>
+              </div>
+              <div class="contract">
+                <div class="contract-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="file-name mono">SKILL.md</span></div>
+                <div class="contract-body">
+                  <pre id="skill-md-file">---
+name: meeting-intelligence-review
+description: Consolidate Microsoft Teams (or similar) meeting transcript PDFs into an evidence-based project delivery brief. Use when the user provides multiple meeting transcripts (kickoff, requirements gathering, discovery, workshops) and wants a PM/BA-style consolidated analysis — business problem, stakeholders, requirements, decisions, risks, open questions, and an action register — with every claim traceable to a source transcript and timestamp.
+---
+
+# Meeting Intelligence Review
+
+Turn a set of meeting transcripts into a single, evidence-based delivery brief for a project
+record. Acts as a senior Project Manager / Business Analyst: extracts facts, never invents them,
+and cites every material finding back to its source.
+
+## When to use this skill
+
+- The user supplies two or more meeting transcripts (PDF, DOCX, or plain text) covering the same
+  project or initiative and asks for a consolidated summary, requirements extraction, or delivery
+  brief.
+- The user asks to identify decisions, action items, risks, or open questions "across" multiple
+  meetings.
+- The user asks you to spot duplicate or conflicting statements between meetings.
+
+Do not use this skill for a single ad-hoc meeting note with no cross-referencing need — a plain
+summary is enough there.
+
+## Tools
+
+`scripts/extract_transcripts.py` — extracts raw text from one or more transcript PDFs using
+`pypdf`, printing each under a `===== &lt;filename&gt; =====` header so timestamps and speaker lines can
+be read and cited directly from the output.
+
+```bash
+python3 scripts/extract_transcripts.py assets/*.pdf
+```
+
+If the source files are DOCX or TXT instead of PDF, read them directly with the Read tool — this
+script is PDF-specific. If a PDF returns no text (scanned/image-based), fall back to OCR (see the
+`pdf` skill's OCR section) before proceeding; do not analyze a transcript you can't actually read.
+
+## Method
+
+1. **Extract every transcript first, in full**, before drawing any conclusion. Never summarize
+   from a partial read.
+2. **Diff the transcripts against each other.** Meeting-to-meeting, look for:
+   - Verbatim or near-verbatim duplicated passages (flag this — it changes how much independent
+     corroboration the evidence actually provides; do not let duplicated text be double- or
+     triple-counted as agreement across meetings).
+   - Direct contradictions (e.g., two stated deadlines, two different owners for the same action
+     item).
+   Surface both explicitly in the brief; don't silently resolve a conflict by picking one side.
+3. **Extract into these categories**, each traceable to source:
+   - Business problem and current-state workflow
+   - Users and stakeholders (name, role, what they said/decided)
+   - Confirmed requirements and constraints
+   - Decisions and the rationale given for each
+   - Risks, assumptions, issues, dependencies
+   - Open questions / information gaps
+   - Action items with owner and any stated timing
+4. **Citation rule:** every material finding gets `(&lt;transcript filename&gt; [&lt;timestamp&gt;])`. A
+   finding with no timestamp/transcript backing it does not go in the "Confirmed" sections.
+5. **Never invent.** Do not fill in a requirement, owner, due date, approval threshold, budget
+   figure, or technical decision that was not explicitly stated. If it's implied but not stated,
+   label it "Reasonable inference" and say what it's inferred from. If it's simply missing, label
+   it "**Not confirmed**".
+6. **Classify every claim** into exactly one of: Confirmed (explicit + cited), Reasonable inference
+   (explicit basis + noted as inference), Not confirmed (gap — do not treat as fact downstream).
+
+## Output structure
+
+Produce, in this order:
+
+1. **Executive summary** — 2–3 paragraphs, cites key facts inline.
+2. **Findings table(s)** with a source-evidence column for every row.
+3. **Action register** — columns: Action, Owner, Timing, Status, Source. Use "Not confirmed" for
+   owner/timing when the transcript doesn't state them — never leave blank or guess.
+4. **Prioritized requirements backlog** — each item paired with an acceptance question to ask at
+   the next workshop (what would need to be confirmed to build this).
+5. **Highest-value follow-up questions** for the next workshop — prioritize questions that unblock
+   the most backlog items or resolve the biggest confirmed gaps/conflicts.
+
+Save the brief as a Markdown file (e.g., `deliverables/Project_Delivery_Brief.md`) so it's diffable
+and versionable. Offer to render it as an Artifact when the user wants a shareable, readable view —
+do not publish it automatically if it references people by name in a way the user hasn't indicated
+is shareable.
+</pre>
+                  <button class="copy-button" id="copy-skill-md" type="button">Copy SKILL.md</button>
+                </div>
+              </div>
+            </div>
+            <p class="block-note">And this is the actual delivery brief the agent produced from the three transcripts — the "what good looks like" reference for the room.</p>
+            <div class="contract">
+              <div class="contract-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="file-name mono">deliverables/Project_Delivery_Brief.md</span></div>
+              <div class="contract-body">
+                <pre id="brief-md-file"># Project Delivery Brief — Internal Request/Approval Process Replacement
+
+**Prepared by:** Meeting Intelligence Review (PM/BA)
+**Sources reviewed:**
+- `Realistic_Teams_Transcript_1.pdf` — "Project Kickoff"
+- `Realistic_Teams_Transcript_2.pdf` — "Requirements Gathering"
+- `Realistic_Teams_Transcript_3.pdf` — "Discovery Session"
+
+**Attendees (all three sessions):** Sarah (Project Manager), Mike (Business Analyst), Emily (Stakeholder), David (Developer), Lisa (Product Owner)
+
+---
+
+## ⚠ Data-Quality Flag — Read First
+
+The dialogue, timestamps, and action items in **Transcript 1, Transcript 2, and Transcript 3 are
+word-for-word identical**. The only differences across the three files are the cover title
+("Project Kickoff" / "Requirements Gathering" / "Discovery Session") and a single one-line "Project
+Context" description. No new statements, decisions, or attendees appear in the second or third
+transcript that were not already in the first.
+
+**Implication:** This brief treats the content as **one evidentiary source that happens to be filed
+three times**, not as three independent meetings that built on each other. Every finding below is
+cited to all three transcripts where it appears, but reviewers should not read this as
+corroboration by three separate conversations — it is the same conversation. This should be raised
+with the meeting owner before the next workshop.
+
+---
+
+## 1. Executive Summary
+
+The business wants to replace a manual, spreadsheet-driven internal request process with a simple
+internal application. Under the current process, a request is submitted, a manager reviews it, and
+finance approves it if it exceeds an unspecified dollar threshold (Transcripts 1–3, [06:00]). The
+stakeholder (Emily) reports that the process "works" but is slow because staff re-enter the same
+information in multiple systems, and most systems are not integrated (Transcripts 1–3, [02:00],
+[14:00]). The largest time losses are approval waiting time and manual spreadsheet updates
+(Transcripts 1–3, [10:00]).
+
+The team agreed to a minimum-viable first release that targets the biggest pain points rather than
+full scope, with room to add features later (Transcripts 1–3, [16:00]–[18:00]). Daily users will
+span Operations, Managers, and Finance, and the system will require role-based permissions since
+managers need visibility into different information than regular employees (Transcripts 1–3,
+[22:00], [26:00]). Monthly summary reporting was named the top-priority report (Transcripts 1–3,
+[36:00]). The only timing signal captured is a target of "before next quarter" (Transcripts 1–3,
+[32:00]) — no specific date, quarter, or year was confirmed.
+
+The meeting closed with four action items (document requirements, send sample reports, review
+existing systems, schedule the next workshop) but **no owner assigned a due date for any of them**
+except the next workshop, which was informally set for "next week" (Transcripts 1–3, [46:00]).
+Significant information gaps remain, most notably the exact approval dollar threshold, the specific
+systems currently in use, and a confirmed delivery date — all labeled **Not confirmed** below.
+
+---
+
+## 2. Business Problem & Current-State Workflow
+
+| Element | Finding | Source |
+|---|---|---|
+| Problem statement | Current process "works, but it takes too long because people enter the same information in multiple places" | T1/T2/T3 [02:00] |
+| Workflow steps | (1) Request submitted → (2) Manager reviews → (3) Finance approves **if over a certain amount** | T1/T2/T3 [06:00] |
+| Approval threshold amount | **Not confirmed** — referred to only as "a certain amount," no figure given | T1/T2/T3 [06:00] |
+| Biggest time loss | Waiting for approvals; manually updating spreadsheets | T1/T2/T3 [10:00] |
+| System integration state | "Most of it is manual today" — systems are largely not connected | T1/T2/T3 [12:00]–[14:00] |
+| Specific current systems in use | **Not confirmed** — named systems not stated | — |
+
+## 3. Confirmed Requirements & Constraints (selected)
+
+| # | Requirement/Constraint | Status | Source |
+|---|---|---|---|
+| R1 | First release ("v1") should target the biggest pain points, not full scope | Confirmed (decision) | T1/T2/T3 [16:00]–[18:00] |
+| R2 | Role-based permissions required; managers must see different information than regular employees | Confirmed | T1/T2/T3 [24:00]–[26:00] |
+| R4 | Monthly summary reports are the top reporting priority | Confirmed | T1/T2/T3 [34:00]–[36:00] |
+| R6 | Target timing: "before the next quarter" | Confirmed as stated, but no date/quarter/year specified | T1/T2/T3 [32:00] |
+| R7 | Exact approval dollar threshold | **Not confirmed** | — |
+
+## 4. Action Register
+
+| # | Action | Owner | Timing | Status | Source |
+|---|---|---|---|---|---|
+| A1 | Document requirements | Mike (Business Analyst) | Not confirmed (no date given) | Open | T1/T2/T3 [28:00] |
+| A2 | Send sample spreadsheets/reports used today | Emily (Stakeholder) | Not confirmed (no date given) | Open | T1/T2/T3 [44:00] |
+| A3 | Review existing systems/data before deciding technical approach | David (Developer) | Not confirmed (no date given) | Open | T1/T2/T3 [38:00] |
+| A4 | Schedule the next workshop | Sarah (Project Manager) | "Next week" (relative, no calendar date confirmed) | Open | T1/T2/T3 [46:00] |
+| A5 | Schedule follow-up interviews with other departments | Mike (Business Analyst) | Not confirmed | Open | T1/T2/T3 [40:00] |
+
+## 5. Highest-Value Follow-Up Questions for the Next Workshop
+
+1. **Data integrity:** Transcripts 1, 2, and 3 contain identical dialogue and action items. Were
+   these genuinely three separate sessions, or is this a single transcript filed under three
+   titles? If separate, what changed between them?
+2. What is the specific dollar/amount threshold that triggers finance approval today?
+3. What is the confirmed target delivery date (exact quarter and year), and is it firm or
+   aspirational?
+4. What specific legacy systems/spreadsheets are in scope for replacement or integration?
+5. Beyond "manager" and "regular employee," what is the complete list of roles and their permitted
+   actions/visibility?
+
+*(Full brief — all 10 sections, every table, and the complete evidence trail — is in the downloadable .zip above.)*
+
+### Evidence Classification Key
+- **Confirmed** — directly and explicitly stated in a transcript, cited with timestamp.
+- **Reasonable inference** — a logical implication drawn from confirmed statements, explicitly marked as such.
+- **Not confirmed** — no transcript statement establishes this; must not be treated as fact or used as a basis for a downstream decision until validated with the stakeholder.
+</pre>
+                <button class="copy-button" id="copy-brief-md" type="button">Copy the delivery brief</button>
+              </div>
+            </div>
           </article>
 
           <article class="block wide">
@@ -116,9 +395,31 @@
   <script>
     const copyBtn = document.querySelector('#copy-prompt');
     const toast = document.querySelector('#toast');
+
+    async function copyToClipboard(text, button, label) {
+      try {
+        await navigator.clipboard.writeText(text);
+        toast.textContent = label + ' copied';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1800);
+      } catch {
+        button.textContent = 'Select and copy above';
+      }
+    }
+
+    document.querySelector('#copy-claude-md').addEventListener('click', (e) => {
+      copyToClipboard(document.querySelector('#claude-md-file').textContent, e.currentTarget, 'CLAUDE.md');
+    });
+    document.querySelector('#copy-skill-md').addEventListener('click', (e) => {
+      copyToClipboard(document.querySelector('#skill-md-file').textContent, e.currentTarget, 'SKILL.md');
+    });
+    document.querySelector('#copy-brief-md').addEventListener('click', (e) => {
+      copyToClipboard(document.querySelector('#brief-md-file').textContent, e.currentTarget, 'Delivery brief');
+    });
+
     const promptText = `You are a senior Project Manager and Business Analyst specializing in meeting intelligence.
 
-Review all three Microsoft Teams transcript PDFs as one project record. Consolidate the conversations into an evidence-based delivery brief.
+Review all three Microsoft Teams transcript PDFs as one project record. Consolidate the conversations into an evidence-based delivery brief. Create the Claude.MD for all the instructions based on information below. Create a SKILL.MD for the skills below that will have tools to review.
 
 Extract:
 - The business problem and current-state workflow
@@ -140,15 +441,7 @@ Produce:
 
 Identify duplicated or conflicting information across transcripts. Separate confirmed facts, reasonable inferences, and unresolved questions before presenting recommendations.`;
 
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(promptText);
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 1800);
-      } catch {
-        copyBtn.textContent = 'Select and copy the prompt above';
-      }
-    });
+    copyBtn.addEventListener('click', () => copyToClipboard(promptText, copyBtn, 'Prompt'));
   </script>
 </body>
 </html>

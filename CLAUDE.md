@@ -39,7 +39,9 @@ workshop-site/
 │   └── downloads/
 │       └── project-analyzer-agent.zip
 ├── demo-2/
-│   └── index.html
+│   ├── index.html
+│   └── downloads/
+│       └── meeting-intelligence-agent.zip
 ├── assets/
 │   ├── logo.svg
 │   ├── logo-512.png
@@ -55,7 +57,7 @@ workshop-site/
 - `index.html` contains all HTML, CSS, and a small progressive-enhancement script for scroll reveals.
 - `resources/index.html` is the enterprise resource center for project managers and business analysts, including role-based workflows, prompt guidance, governance, and workshop downloads.
 - `demo-1/index.html` is the live-demo companion page: it walks attendees through building a Project Analyzer Agent (scenario, source PDFs, a copy-to-clipboard starting prompt, live-build steps, the exact final `CLAUDE.md`/`SKILL.md` file contents with per-file copy buttons, a one-click `downloads/project-analyzer-agent.zip` of the complete finished agent, and debrief questions).
-- `demo-2/index.html` is the Meeting Intelligence Agent companion page. It uses three Teams transcript PDFs from the linked Google Drive folder and reuses the Demo #1 design system.
+- `demo-2/index.html` is the Meeting Intelligence Agent companion page. It uses three Teams transcript PDFs from the linked Google Drive folder and reuses the Demo #1 design system, including the same final-output pattern: the exact `CLAUDE.md`/`SKILL.md`/delivery-brief file contents with per-file copy buttons and a one-click `downloads/meeting-intelligence-agent.zip` of the complete finished agent.
 - `assets/` holds the site's favicon and brand mark, reused across all pages.
 - Public routes are `/`, `/resources/`, `/demo-1/`, and `/demo-2/`. Keep the legacy redirects in `vercel.json` so old `.html` and `/workshop-exercises/` links continue to work.
 - There is no JavaScript framework, package manager, build command, or generated output.
