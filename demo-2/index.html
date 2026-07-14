@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07110f">
+  <meta name="description" content="Demo #2: build a Meeting Intelligence Agent that turns three Microsoft Teams transcripts into decisions, requirements, risks, and owned action items.">
+  <meta property="og:title" content="Demo #2: Meeting Intelligence Agent">
+  <meta property="og:description" content="A live AI-agent build using three realistic Microsoft Teams transcripts.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aiagentindex.vercel.app/demo-2/">
+  <meta property="og:image" content="https://aiagentindex.vercel.app/assets/logo-512.png">
+  <link rel="canonical" href="https://aiagentindex.vercel.app/demo-2/">
+  <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <title>Demo #2: Meeting Intelligence Agent — AI Agent Building 101</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../demo-1/demo-1.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="/"><span class="brand-mark"><img src="../assets/logo.svg" width="34" height="34" alt="" loading="eager"></span><span>AI Agent Building 101</span></a>
+      <nav class="page-nav" aria-label="Site navigation"><a href="/demo-1/">Demo #1</a><a class="active" href="/demo-2/">Demo #2</a><a href="/resources/">Resources</a><a class="home" href="/">Workshop home</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-inner">
+        <div class="breadcrumb mono"><a href="/">Workshop</a><span>/</span><span>Demo #2</span></div>
+        <h1>Demo #2: <span class="gradient">Meeting Intelligence Agent.</span></h1>
+        <p class="lede">Turn three realistic Microsoft Teams transcripts into one reliable delivery brief: requirements, decisions, risks, stakeholder needs, and clearly owned next steps.</p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="mono" style="color:var(--mint)">Live demo · transcript analysis</div><h2>Convert conversation into <span class="gradient">project clarity.</span></h2></div>
+          <p>Participants can open the exact source folder, build the same agent, and compare its conclusions with evidence from the three supplied transcripts.</p>
+        </div>
+
+        <div class="workspace">
+          <article class="block">
+            <div class="block-num mono">01 · Scenario</div>
+            <h3>Business problem</h3>
+            <div class="placeholder filled"><strong>Important decisions are trapped in meetings</strong>Project teams leave kickoff and discovery sessions with scattered notes, incomplete requirements, and action items that are easy to lose. This demo creates an agent that consolidates meeting evidence into a review-ready project brief without inventing missing details.</div>
+          </article>
+
+          <article class="block">
+            <div class="block-num mono">02 · Source folder</div>
+            <h3>Open the demo contents</h3>
+            <div class="placeholder filled"><strong>Demo #2 — 3 Microsoft Teams transcript PDFs</strong>The shared folder contains the Project Kickoff, Requirements Gathering, and Discovery Session transcripts used throughout this exercise.<br><a href="https://drive.google.com/drive/folders/1xr22sL4thKxxajnWQlnmNCVlbjO4BdKd?usp=sharing" target="_blank" rel="noopener noreferrer">Open the Demo #2 folder ↗</a></div>
+          </article>
+
+          <article class="block wide">
+            <div class="block-num mono">03 · Source inventory</div>
+            <h3>Use all three transcripts</h3>
+            <div class="placeholder filled"><ol>
+              <li><a href="https://drive.google.com/file/d/1bOi6rpamXPCUGMMmJlr5lgXQVSz8QhrI/view" target="_blank" rel="noopener noreferrer">Realistic_Teams_Transcript_1.pdf ↗</a> — Project Kickoff</li>
+              <li><a href="https://drive.google.com/file/d/1K7WtoiMY6Gig_HKqBYgzi2-nn0uOWwT4/view" target="_blank" rel="noopener noreferrer">Realistic_Teams_Transcript_2.pdf ↗</a> — Requirements Gathering</li>
+              <li><a href="https://drive.google.com/file/d/18tKuMdB8ZQY4tiKkOAv-aMEddmZOL6iV/view" target="_blank" rel="noopener noreferrer">Realistic_Teams_Transcript_3.pdf ↗</a> — Discovery Session</li>
+            </ol></div>
+          </article>
+
+          <article class="block wide">
+            <div class="block-num mono">04 · Starting prompt</div>
+            <h3>Paste this to build the agent</h3>
+            <p class="block-note">Upload all three PDFs, then use this prompt. The agent is explicitly required to separate confirmed facts from assumptions and attach transcript-and-timestamp evidence.</p>
+            <div class="contract">
+              <div class="contract-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="contract-body" id="agent-prompt">
+                <div class="contract-line"><b>ROLE</b>You are a senior Project Manager and Business Analyst specializing in meeting intelligence.</div>
+                <div class="contract-line"><b>TASK</b>Review all three Microsoft Teams transcript PDFs as one project record. Consolidate the conversations into an evidence-based delivery brief.</div>
+                <div class="contract-line"><b>EXTRACT</b>Business problem, current-state workflow, users and stakeholders, confirmed requirements, constraints, decisions, risks, open questions, dependencies, and action items with owners.</div>
+                <div class="contract-line"><b>EVIDENCE RULE</b>For every material finding, cite the transcript name and timestamp. Never invent a requirement, owner, due date, approval threshold, or technical decision. Mark anything unsupported as “Not confirmed.”</div>
+                <div class="contract-line"><b>OUTPUT</b>Produce an executive summary, findings table, action register, requirements backlog, and a short list of the highest-value follow-up questions for the next workshop.</div>
+                <div class="contract-line"><b>QUALITY CHECK</b>Identify duplicated or conflicting information across transcripts. Separate facts, reasonable inferences, and unresolved questions before presenting recommendations.</div>
+                <button class="copy-button" id="copy-prompt" type="button">Copy the Demo #2 prompt</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="block">
+            <div class="block-num mono">05 · Live build</div>
+            <h3>Presentation sequence</h3>
+            <div class="placeholder filled"><ol>
+              <li>Open the shared folder and upload all three transcript PDFs.</li>
+              <li>Paste the starting prompt and let the agent create its consolidated brief.</li>
+              <li>Inspect two citations against their transcript timestamps.</li>
+              <li>Ask it to separate confirmed requirements from open questions.</li>
+              <li>Generate the action register and next-workshop agenda.</li>
+            </ol></div>
+          </article>
+
+          <article class="block">
+            <div class="block-num mono">06 · Expected output</div>
+            <h3>What good looks like</h3>
+            <div class="placeholder filled"><strong>A traceable project intelligence brief</strong>The result should surface the manual request workflow, approval delays, spreadsheet duplication, user roles, next-quarter target, monthly reporting priority, and assigned follow-ups — while clearly marking missing approval thresholds, exact dates, and technical choices as unconfirmed.</div>
+          </article>
+
+          <article class="block wide">
+            <div class="block-num mono">07 · Debrief</div>
+            <h3>Challenge the agent</h3>
+            <div class="placeholder filled"><strong>Ask the room</strong>Did the agent distinguish a stated requirement from an inference? Could every important claim be traced to a source timestamp? Which follow-up question would reduce the most project risk? What human review is required before these outputs enter the backlog or project plan?</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tips">
+      <div class="shell tip-grid">
+        <div class="tip"><h3>Verify, then trust</h3><p>Open two cited timestamps live so participants see how traceability changes the quality of an AI-generated brief.</p></div>
+        <div class="tip"><h3>Expose uncertainty</h3><p>Highlight the missing approval threshold and deadline details as examples of what the agent must not invent.</p></div>
+        <div class="tip"><h3>Move work forward</h3><p>Finish with an owned action register and focused agenda for the next stakeholder workshop.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell footer-inner"><span>Demo #2: Meeting Intelligence Agent · AI Agent Building 101</span><a href="/demo-1/">← Review Demo #1</a></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite">Prompt copied</div>
+  <script>
+    const copyBtn = document.querySelector('#copy-prompt');
+    const toast = document.querySelector('#toast');
+    const promptText = `You are a senior Project Manager and Business Analyst specializing in meeting intelligence.
+
+Review all three Microsoft Teams transcript PDFs as one project record. Consolidate the conversations into an evidence-based delivery brief.
+
+Extract:
+- The business problem and current-state workflow
+- Users and stakeholders
+- Confirmed requirements and constraints
+- Decisions and decision rationale
+- Risks, assumptions, issues, and dependencies
+- Open questions and information gaps
+- Action items, owners, and any stated timing
+
+For every material finding, cite the transcript name and timestamp. Never invent a requirement, owner, due date, approval threshold, or technical decision. If the transcripts do not confirm something, label it “Not confirmed.”
+
+Produce:
+1. An executive summary
+2. A findings table with source evidence
+3. An action register with owner, timing, and status
+4. A prioritized requirements backlog with acceptance questions
+5. The highest-value follow-up questions for the next workshop
+
+Identify duplicated or conflicting information across transcripts. Separate confirmed facts, reasonable inferences, and unresolved questions before presenting recommendations.`;
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(promptText);
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1800);
+      } catch {
+        copyBtn.textContent = 'Select and copy the prompt above';
+      }
+    });
+  </script>
+</body>
+</html>

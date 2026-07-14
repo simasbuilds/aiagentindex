@@ -1,0 +1,160 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07110f"><meta name="description" content="Demo #1: build a Project Analyzer Agent live — an AI agent that reads a project's PDF documentation and becomes an expert on scope, requirements, and workflows."><meta property="og:title" content="Demo #1: Project Analyzer Agent"><meta property="og:description" content="A live build showing how Claude can read a project's documentation and dramatically cut Project Manager onboarding time."><meta property="og:type" content="website"><meta property="og:url" content="https://aiagentindex.vercel.app/demo-1/"><meta property="og:image" content="https://aiagentindex.vercel.app/assets/logo-512.png"><link rel="canonical" href="https://aiagentindex.vercel.app/demo-1/"><link rel="icon" href="../assets/logo.svg" type="image/svg+xml"><link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"><title>Demo #1: Project Analyzer Agent — AI Agent Building 101</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="demo-1.css"></head><body>
+
+<header class="topbar"><div class="shell topbar-inner"><a class="brand" href="/"><span class="brand-mark"><img src="../assets/logo.svg" width="34" height="34" alt="" loading="eager"></span><span>AI Agent Building 101</span></a><nav class="page-nav" aria-label="Site navigation"><a class="active" href="/demo-1/">Demo #1</a><a href="/demo-2/">Demo #2</a><a href="/resources/">Resources</a><a class="home" href="/">Workshop home</a></nav></div></header>
+
+<main>
+  <section class="hero">
+    <div class="shell hero-inner">
+      <div class="breadcrumb mono"><a href="/">Workshop</a><span>/</span><span>Demo #1</span></div>
+      <h1>Demo #1: <span class="gradient">Project Analyzer Agent.</span></h1>
+      <p class="lede">A live build showing how Claude can read a project's PDF documentation and become an expert on its scope, requirements, and workflows — cutting Project Manager onboarding from days to minutes.</p>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="shell">
+      <div class="section-head">
+        <div><div class="mono" style="color:var(--mint)">Live demo · presentation content</div><h2>Build the agent <span class="gradient">on stage.</span></h2></div>
+        <p>Use this page as the participant-facing companion during the demonstration — the same inputs and prompt you'll use live, so the room can follow along or try it afterward.</p>
+      </div>
+
+      <div class="workspace">
+        <article class="block">
+          <div class="block-num mono">01 · Scenario</div>
+          <h3>Business problem</h3>
+          <div class="placeholder filled"><strong>Faster onboarding through documentation</strong>New Project Managers often spend days reading requirements, specs, and workflow docs before they can contribute. This demo builds a Project Analyzer Agent: give Claude a project's PDF documentation and it becomes an expert on scope, goals, requirements, and workflows — ready to brief a new team member in minutes.</div>
+        </article>
+
+        <article class="block">
+          <div class="block-num mono">02 · Inputs</div>
+          <h3>Source materials</h3>
+          <div class="placeholder filled"><strong>Project knowledge base — 3 PDFs</strong>Download the documents and place them in an <code>assets</code> folder next to the agent's <code>CLAUDE.md</code>. They are the agent's complete and only knowledge base.<br><a href="https://drive.google.com/drive/folders/1m_kXiXqz4AMeSwhoeEl1qaCERgEwvnkQ?usp=sharing" target="_blank" rel="noopener noreferrer">Open the PDF folder ↗</a></div>
+        </article>
+
+        <article class="block wide">
+          <div class="block-num mono">03 · Starting prompt</div>
+          <h3>Paste this to build the agent</h3>
+          <p class="block-note">This is the exact prompt used to generate the agent's <code>CLAUDE.md</code> and <code>skill.md</code>. Copy it, drop it into Claude alongside the assets folder above, and it's ready for anyone in the room to try.</p>
+          <div class="contract">
+            <div class="contract-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <div class="contract-body" id="agent-prompt">
+              <div class="contract-line"><b>ROLE</b>You are a senior Project Management expert.</div>
+              <div class="contract-line"><b>TASK</b>Build a Project Analyzer Agent that demonstrates how AI can understand an enterprise project by reading its documentation. The PDFs in the assets folder are the project's complete knowledge base — review them fully and become an expert on the project before answering anything.</div>
+              <div class="contract-line"><b>CLAUDE.MD</b>Define Claude's role as a Senior Project Manager. All project knowledge comes from the assets folder. Build a complete understanding before answering. Always reference the source documents, never invent details, connect information across documents, and explain concepts clearly for both technical and non-technical stakeholders.</div>
+              <div class="contract-line"><b>SKILL.MD</b>Define a Project Analyzer Agent that understands scope, business goals, functional and business requirements, processes, workflows, user stories, acceptance criteria, testing scenarios, terminology, and stakeholders — and can explain the project to new teammates, answer questions in natural language, summarize documentation, connect information across documents, run impact analysis, and generate executive summaries and stakeholder updates.</div>
+              <div class="contract-line"><b>EXAMPLE PROMPTS</b>Summarize this project. Explain the project in five minutes. What business problem is this solving? Who are the stakeholders? Explain the onboarding workflow. Show me all user stories related to identity verification. Which requirements are affected if identity verification changes? What testing scenarios exist? Generate an executive summary. Explain this project to a new Project Manager.</div>
+              <div class="contract-line"><b>GOAL</b>A polished, enterprise-quality Project Analyzer Agent a Project Manager could realistically use when joining a new project.</div>
+              <button class="copy-button" id="copy-prompt" type="button">Copy the starting prompt</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="block">
+          <div class="block-num mono">04 · Live build</div>
+          <h3>Presentation sequence</h3>
+          <div class="placeholder filled"><ol>
+            <li>Create a project folder with an <code>assets</code> subfolder and drop in the 3 PDFs.</li>
+            <li>Open Claude in that folder and paste the starting prompt above.</li>
+            <li>Let Claude draft <code>CLAUDE.md</code> and <code>skill.md</code>, then review them together.</li>
+            <li>Ask a real project question live — e.g. "Explain the onboarding workflow."</li>
+            <li>Show the agent answering with citations back to the source PDFs.</li>
+          </ol></div>
+        </article>
+
+        <article class="block">
+          <div class="block-num mono">05 · Final output</div>
+          <h3>Completed example</h3>
+          <div class="placeholder filled"><strong>A working Project Analyzer Agent</strong>A <code>CLAUDE.md</code> defining the agent's role and ground rules, a <code>skill.md</code> defining its capabilities, and a live Q&A exchange where it explains the project and cites its sources — proof a new PM could get productive in minutes, not days.</div>
+        </article>
+
+        <article class="block">
+          <div class="block-num mono">06 · Debrief</div>
+          <h3>Discussion questions</h3>
+          <div class="placeholder filled"><strong>Ask the room</strong>What did the agent get right without manual explanation? Where did it need a correction or an extra document? How much faster was this than a human-led walkthrough? What governance would you want before trusting agent answers on a real project?</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="tips">
+    <div class="shell tip-grid">
+      <div class="tip"><h3>Narrate decisions</h3><p>Explain why the prompt, the assets folder, and each instruction exist — not only what you click.</p></div>
+      <div class="tip"><h3>Show one failure</h3><p>A controlled gap in the documents teaches the room how to inspect and correct agent answers.</p></div>
+      <div class="tip"><h3>Close the loop</h3><p>Connect the agent's answer back to the original onboarding problem and where a human still needs to review.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="shell footer-inner"><span>Demo #1: Project Analyzer Agent · AI Agent Building 101</span><a href="/">← Back to workshop home</a></div></footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">Prompt copied</div>
+<script>
+  const copyBtn = document.querySelector('#copy-prompt'), toast = document.querySelector('#toast');
+  const promptText = `You are a senior Project Management expert.
+
+Build a Project Analyzer Agent that demonstrates how AI can understand an enterprise project by reading its documentation.
+
+The PDF documents in the assets folder are the project's complete knowledge base. Review them fully and become an expert on the project before answering any question.
+
+The purpose of this demo is to show Project Managers how AI can dramatically reduce project onboarding time by understanding enterprise documentation.
+
+Create two files:
+
+1) CLAUDE.md should:
+- Define Claude's role as a Senior Project Manager.
+- Explain that all project knowledge comes from the documents in the assets folder.
+- Instruct Claude to build a complete understanding of the project before answering questions.
+- Always reference information from the provided documents.
+- Never invent project details.
+- Connect information across multiple documents when answering.
+- Explain concepts clearly for both technical and non-technical stakeholders.
+
+2) skill.md should define a Project Analyzer Agent capable of:
+- Understanding the project scope
+- Understanding business goals
+- Understanding functional requirements
+- Understanding business requirements
+- Understanding business processes
+- Understanding workflows
+- Understanding user stories
+- Understanding acceptance criteria
+- Understanding testing scenarios
+- Understanding project terminology
+- Understanding stakeholders
+- Explaining the project to new team members
+- Answering project questions in natural language
+- Summarizing documentation
+- Finding related information across multiple documents
+- Performing impact analysis for proposed changes
+- Generating executive summaries
+- Generating stakeholder updates
+- Explaining project workflows
+- Helping Project Managers quickly understand an unfamiliar project
+
+Include example prompts such as:
+- Summarize this project.
+- Explain the project in five minutes.
+- What business problem is this solving?
+- Who are the stakeholders?
+- Explain the onboarding workflow.
+- Show me all user stories related to identity verification.
+- Which requirements are affected if identity verification changes?
+- Explain the end-to-end business process.
+- What testing scenarios exist?
+- Generate an executive summary.
+- Explain this project to a new Project Manager.
+- What documents mention manual review?
+- Which requirements support this process?
+
+Build a polished, enterprise-quality Project Analyzer Agent that a Project Manager could realistically use when joining a new project.`;
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(promptText);
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1800);
+    } catch {
+      copyBtn.textContent = 'Select and copy the prompt above';
+    }
+  });
+</script>
+</body></html>

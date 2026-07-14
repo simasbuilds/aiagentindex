@@ -10,6 +10,11 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aiagentindex.vercel.app/">
   <link rel="canonical" href="https://aiagentindex.vercel.app/">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta property="og:image" content="https://aiagentindex.vercel.app/assets/logo-512.png">
   <title>AI Agent Building 101 — Workshop Field Guide</title>
   <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,25 +112,14 @@
       place-items: center;
       width: 34px;
       height: 34px;
-      color: var(--ink);
-      background: var(--acid);
-      border-radius: 50%;
-      font: 500 11px "DM Mono", monospace;
+      overflow: hidden;
+      border-radius: 10px;
+      flex: none;
     }
+    .brand-mark img { width: 100%; height: 100%; display: block; }
     .nav { display: flex; align-items: center; gap: 28px; }
     .nav a { color: rgba(255,255,255,.68); text-decoration: none; font-size: 13px; font-weight: 600; transition: color .2s; }
     .nav a:hover { color: var(--white); }
-    .nav-dropdown { position: relative; }
-    .nav-dropdown summary { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,.68); font-size: 13px; font-weight: 600; cursor: pointer; list-style: none; transition: color .2s; }
-    .nav-dropdown summary::-webkit-details-marker { display: none; }
-    .nav-dropdown summary::after { content: "+"; color: var(--acid); font: 500 14px "DM Mono", monospace; transition: transform .2s; }
-    .nav-dropdown[open] summary { color: var(--white); }
-    .nav-dropdown[open] summary::after { transform: rotate(45deg); }
-    .nav-menu { position: absolute; top: calc(100% + 18px); right: 0; width: 250px; padding: 8px; background: rgba(5,10,9,.98); border: 1px solid var(--line-light); border-radius: 12px; box-shadow: 0 25px 70px rgba(0,0,0,.42); backdrop-filter: blur(18px); }
-    .nav-menu a { display: block; margin: 0; padding: 12px; border-radius: 8px; }
-    .nav-menu a:hover { color: var(--ink); background: var(--acid); }
-    .nav-menu small { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; font-weight: 500; }
-    .nav-menu a:hover small { color: rgba(7,17,15,.68); }
     .live-link {
       display: inline-flex;
       min-height: 42px;
@@ -547,7 +541,6 @@
 
     @media (max-width: 900px) {
       .nav > a:not(.live-link) { display: none; }
-      .nav-dropdown { display: none; }
       .hero-inner { grid-template-columns: 1fr; gap: 30px; }
       .hero-copy { max-width: 620px; padding-top: 0; }
       .hero-meta { grid-template-columns: 1fr 1fr; }
@@ -605,18 +598,13 @@
   <header class="topbar">
     <div class="shell topbar-inner">
       <a class="brand" href="#top" aria-label="AI Agent Building 101 home">
-        <span class="brand-mark">01</span>
+        <span class="brand-mark"><img src="assets/logo.svg" width="34" height="34" alt="" loading="eager"></span>
         <span class="brand-text">AI Agent Building 101</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
         <a href="#event">Workshop</a>
-        <details class="nav-dropdown">
-          <summary>Workshop Exercises</summary>
-          <div class="nav-menu">
-            <a href="/workshop-exercises/">Exercise workspace<small>Instructions, materials, and deliverables</small></a>
-            <a href="/workshop-exercises/demo-1/">Demo #1 contents<small>Presentation exercise content</small></a>
-          </div>
-        </details>
+        <a href="/demo-1/">Demo #1</a>
+        <a href="/demo-2/">Demo #2</a>
         <a href="/resources/">PM &amp; BA Resources</a>
         <a href="#toolkit">AI Toolkit</a>
         <a class="live-link" href="https://aiagentspresentation.vercel.app/presenter#1" target="_blank" rel="noopener noreferrer">

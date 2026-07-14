@@ -10,6 +10,16 @@
       "source": "/resources.html",
       "destination": "/resources/",
       "permanent": true
+    },
+    {
+      "source": "/workshop-exercises",
+      "destination": "/demo-1/",
+      "permanent": true
+    },
+    {
+      "source": "/workshop-exercises/:path*",
+      "destination": "/demo-1/",
+      "permanent": true
     }
   ],
   "headers": [

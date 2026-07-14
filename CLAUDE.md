@@ -33,11 +33,17 @@ workshop-site/
 ├── index.html
 ├── resources/
 │   └── index.html
-├── workshop-exercises/
+├── demo-1/
 │   ├── index.html
-│   ├── exercises.css
-│   └── demo-1/
-│       └── index.html
+│   └── demo-1.css
+├── demo-2/
+│   └── index.html
+├── assets/
+│   ├── logo.svg
+│   ├── logo-512.png
+│   ├── apple-touch-icon.png
+│   ├── favicon-16.png
+│   └── favicon-32.png
 ├── vercel.json
 ├── event.ics
 ├── README.md
@@ -46,8 +52,10 @@ workshop-site/
 
 - `index.html` contains all HTML, CSS, and a small progressive-enhancement script for scroll reveals.
 - `resources/index.html` is the enterprise resource center for project managers and business analysts, including role-based workflows, prompt guidance, governance, and workshop downloads.
-- `workshop-exercises/index.html` is the editable participant exercise workspace; `workshop-exercises/demo-1/index.html` holds the Demo #1 presentation content.
-- Public routes are `/` and `/resources/`. Keep the legacy redirects in `vercel.json` so old `.html` links continue to work.
+- `demo-1/index.html` is the live-demo companion page: it walks attendees through building a Project Analyzer Agent (scenario, source PDFs, a copy-to-clipboard starting prompt, live-build steps, expected output, and debrief questions).
+- `demo-2/index.html` is the Meeting Intelligence Agent companion page. It uses three Teams transcript PDFs from the linked Google Drive folder and reuses the Demo #1 design system.
+- `assets/` holds the site's favicon and brand mark, reused across all pages.
+- Public routes are `/`, `/resources/`, `/demo-1/`, and `/demo-2/`. Keep the legacy redirects in `vercel.json` so old `.html` and `/workshop-exercises/` links continue to work.
 - There is no JavaScript framework, package manager, build command, or generated output.
 - `event.ics` is the attendee-downloadable calendar event and must stay synchronized with the visible date, time, venue, and presentation URL.
 - The builder toolkit in `index.html` is a curated set of third-party GitHub resources with client-side search and category filters.

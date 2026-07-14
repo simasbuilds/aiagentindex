@@ -1,8 +1,8 @@
 # AI Agent Building 101 — Workshop Resources
 
-A single static page hosting both slide decks and event details for the
-*AI Agent Building 101: From Concept to Working Prototype* talk (PMI Florida
-Suncoast, July 14, 2026).
+A static workshop companion with event details, two guided live demos, and a
+curated resource center for the *AI Agent Building 101: From Concept to Working
+Prototype* talk (PMI Florida Suncoast, July 14, 2026).
 
 ## Structure
 
@@ -11,11 +11,12 @@ workshop-site/
 ├── index.html              # the page
 ├── resources/
 │   └── index.html          # PM and business analyst AI resource center
-├── workshop-exercises/
-│   ├── index.html          # editable workshop exercise workspace
-│   ├── exercises.css       # shared exercise-page design system
-│   └── demo-1/
-│       └── index.html      # Demo #1 presentation contents
+├── demo-1/
+│   ├── index.html          # Demo #1: Project Analyzer Agent (live-demo companion)
+│   └── demo-1.css          # demo page design system
+├── demo-2/
+│   └── index.html          # Demo #2: Meeting Intelligence Agent
+├── assets/                 # favicon and brand mark, shared across pages
 ├── vercel.json             # clean routes, legacy redirects, and security headers
 ├── event.ics               # downloadable calendar event
 ```
@@ -46,5 +47,5 @@ followed by `git push -u origin main`.)
 
 ## Updating
 
-Editing `index.html`, `resources/index.html`, `event.ics`, or a file in `decks/` and pushing to the
+Editing `index.html`, either demo page, `resources/index.html`, or `event.ics` and pushing to the
 connected GitHub branch will trigger an automatic redeploy on Vercel.
