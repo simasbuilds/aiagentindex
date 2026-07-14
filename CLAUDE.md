@@ -37,16 +37,12 @@ workshop-site/
 ├── event.ics
 ├── README.md
 ├── CLAUDE.md
-└── decks/
-    ├── ai-agent-building-101-foundations.pptx
-    └── ai-agent-building-101-advanced.pptx
 ```
 
 - `index.html` contains all HTML, CSS, and a small progressive-enhancement script for scroll reveals.
 - `resources/index.html` is the enterprise resource center for project managers and business analysts, including role-based workflows, prompt guidance, governance, and workshop downloads.
 - Public routes are `/` and `/resources/`. Keep the legacy redirects in `vercel.json` so old `.html` links continue to work.
 - There is no JavaScript framework, package manager, build command, or generated output.
-- The files in `decks/` are linked directly from the page.
 - `event.ics` is the attendee-downloadable calendar event and must stay synchronized with the visible date, time, venue, and presentation URL.
 - The builder toolkit in `index.html` is a curated set of third-party GitHub resources with client-side search and category filters.
 - Google Fonts are the only current remote design dependency.
@@ -95,7 +91,6 @@ New sections should reuse the existing CSS variables, typography, card language,
 - Make focused changes and preserve working content unless the request calls for a rewrite.
 - Keep asset paths relative so GitHub and Vercel deployments behave the same way.
 - Use lowercase, hyphenated file names for new downloads.
-- Do not rename or replace the existing `.pptx` files without updating every matching link.
 - Do not embed secrets, private URLs, analytics keys, or credentials in this public static repository.
 - Check external copy, event details, dates, and presenter information before changing them.
 - Keep toolkit URLs direct (never Google redirect URLs), verify that repositories still resolve, label community projects honestly, and avoid implying endorsement or guaranteed security.
@@ -113,7 +108,6 @@ python3 -m http.server 8000
 Then review `http://localhost:8000/` at desktop and mobile widths. Before considering a change complete, verify:
 
 - The page loads without console errors or missing local files.
-- Both `.pptx` download links work.
 - The live presenter link opens at slide `#1`.
 - The Google Drive workshop folder opens and is shared with the intended audience.
 - Navigation anchors land on the correct sections.

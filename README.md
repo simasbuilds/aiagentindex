@@ -13,9 +13,6 @@ workshop-site/
 │   └── index.html          # PM and business analyst AI resource center
 ├── vercel.json             # clean routes, legacy redirects, and security headers
 ├── event.ics               # downloadable calendar event
-└── decks/
-    ├── ai-agent-building-101-foundations.pptx
-    └── ai-agent-building-101-advanced.pptx
 ```
 
 No build step — plain HTML/CSS, ready to deploy as-is.
